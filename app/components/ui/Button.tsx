@@ -1,16 +1,17 @@
 import classNames from "classnames";
-import React, { ReactNode } from "react";
+import React, { HTMLAttributes, ReactNode } from "react";
 
 export type ButtonType = 'default' | 'primary';
 
-export interface ButtonProps {
+export interface ButtonProps extends HTMLAttributes<HTMLButtonElement>{
     children?: ReactNode;
     type?: ButtonType;
+    htmlType?: "submit" | "reset" | "button";
 }
 
-const Button = ({children, type = 'default'}: ButtonProps) => {
+const Button = ({children, htmlType, type = 'default', ...rest}: ButtonProps) => {
     return (
-        <button className={classNames('px-8 py-1 flex items-center rounded-md', {
+        <button {...rest} type={htmlType} className={classNames('px-8 py-1 flex items-center rounded-md', {
             'border-gray-500': type === 'default',
             'border-solid': type === 'default',
             'border': type === 'default',

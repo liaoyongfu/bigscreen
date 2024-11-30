@@ -1,3 +1,4 @@
+
 import { Metadata } from "next";
 import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
@@ -14,70 +15,37 @@ export interface RowEntity {
     thumbnail: string;
 }
 
-const list: RowEntity[] = [
-    {
-        name: '光速',
-        description: '光速动画',
-        createTime: '2024-11-25 17:45:13',
-        thumbnail: 'https://www.baidu.com/img/PCfb_5bf082d29588c07f842ccde3f97243ea.png'
-    },
-    {
-        name: '光速',
-        description: '光速动画',
-        createTime: '2024-11-25 17:45:13',
-        thumbnail: 'https://www.baidu.com/img/PCfb_5bf082d29588c07f842ccde3f97243ea.png'
-    },
-    {
-        name: '光速',
-        description: '光速动画',
-        createTime: '2024-11-25 17:45:13',
-        thumbnail: 'https://www.baidu.com/img/PCfb_5bf082d29588c07f842ccde3f97243ea.png'
-    },
-    {
-        name: '光速',
-        description: '光速动画',
-        createTime: '2024-11-25 17:45:13',
-        thumbnail: 'https://www.baidu.com/img/PCfb_5bf082d29588c07f842ccde3f97243ea.png'
-    },
-    {
-        name: '光速',
-        description: '光速动画',
-        createTime: '2024-11-25 17:45:13',
-        thumbnail: 'https://www.baidu.com/img/PCfb_5bf082d29588c07f842ccde3f97243ea.png'
-    },
-    {
-        name: '光速',
-        description: '光速动画',
-        createTime: '2024-11-25 17:45:13',
-        thumbnail: 'https://www.baidu.com/img/PCfb_5bf082d29588c07f842ccde3f97243ea.png'
-    }
-];
+const Animation = async ({
+    searchParams,
+  }: {
+    searchParams: { [key: string]: string | string[] | undefined }
+  }) => {
+    const data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/animation?name=' + searchParams.name, {method: 'GET'});
+    const animations: RowEntity[] = await data.json();
 
-const Animation = () => {
     return (
         <div>
-            <form className="grid grid-cols-4">
+            <form id="form" className="grid grid-cols-4" action="/animation">
                 <div className="flex items-center">
                     <div className="">名称：</div>
-                    <div className="fex-1"><Input className="w-full" placeholder="支持关键字搜索" /></div>
+                    <div className="fex-1"><Input className="w-full" name="name" placeholder="支持关键字搜索" /></div>
                 </div>
                 <div className="flex items-center">
-                    <div className="">名称：</div>
-                    <div className="fex-1"><Input className="w-full" placeholder="支持关键字搜索" /></div>
-                </div>
-                <div className="flex items-center">
-                    <div className="">名称：</div>
-                    <div className="fex-1"><Input className="w-full" placeholder="支持关键字搜索" /></div>
+                    <div className="">描述：</div>
+                    <div className="fex-1"><Input name="description" className="w-full" placeholder="支持关键字搜索" /></div>
                 </div>
                 <div className="flex items-center gap-4">
-                    <Button type="primary">查询</Button>
-                    <Button>重置</Button>
+                    <Button htmlType="submit" type="primary">查询</Button>
+                    <Button htmlType="reset">重置</Button>
                 </div>
             </form>
-            <div className="text-gray-600 mt-8 pr-4 pb-2 border-b">
-                总共有 23 条
+            <div className="text-gray-600 mt-8 pr-4 pb-2 border-b flex justify-between">
+                <div>总共有 23 条</div>
+                <div>
+                    <Button>新增</Button>
+                </div>
             </div>
-            <List rowKey="id" dataSource={list} renderItem={item => {
+            <List rowKey="id" dataSource={animations} renderItem={item => {
                 return (
                     <div className="border border-gray-300 p-4 rounded-md hover:shadow-2xl hover:bg-blue-200 cursor-pointer">
                         <img src={item.thumbnail} alt="" className="border bg-gray-500" />

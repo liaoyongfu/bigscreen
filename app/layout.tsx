@@ -32,8 +32,8 @@ export default function RootLayout({
       >
         <div className="flex flex-col h-full bg-gray-100">
           <Header menus={MENUS} active="/" />
-          <div className="flex-1 flex justify-center my-4">
-            <div className="basis-2/3 bg-white p-4">{children}</div>
+          <div className="flex-1 flex">
+            <div className="bg-white flex-1 p-4 m-4 rounded-md">{children}</div>
           </div>
         </div>
       </body>

@@ -9,7 +9,7 @@ export interface HeaderProps {
 
 const Header = ({menus, active}: HeaderProps) => {
     return (
-        <div className="bg-blue-400 py-4 px-10 text-white flex justify-between hidden">
+        <div className="bg-blue-400 py-4 px-10 text-white flex justify-between">
         <h1 className="font-bold text-lg">网站</h1>
         <ul className="flex items-center gap-8">
           {menus.map(item => (
