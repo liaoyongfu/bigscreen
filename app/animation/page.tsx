@@ -1,8 +1,8 @@
 
 import { Metadata } from "next";
-import Input from "../components/ui/Input";
-import Button from "../components/ui/Button";
-import List from "../components/ui/List";
+import Input from "../../components/ui/Input";
+import Button from "../../components/ui/Button";
+import List from "../../components/ui/List";
 
 export const metadata: Metadata = {
     title: 'Animation'

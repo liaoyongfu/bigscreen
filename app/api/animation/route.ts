@@ -1,5 +1,5 @@
-import dbConnect from "@/app/lib/mongodb"
-import AnimationModel from "@/app/models/Animation";
+import dbConnect from "@/lib/mongodb"
+import AnimationModel from "@/models/Animation";
 import { NextRequest, NextResponse } from "next/server"
 
 export const GET = async (req: NextRequest, res: NextResponse) => {
